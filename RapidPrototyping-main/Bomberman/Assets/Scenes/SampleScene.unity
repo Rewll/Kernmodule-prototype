@@ -1323,6 +1323,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -9085477073330798640, guid: 1fe786f095fe536438ee03f2021cc426, type: 3}
+      propertyPath: OnDestroyEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -9085477073330798640, guid: 1fe786f095fe536438ee03f2021cc426, type: 3}
+      propertyPath: OnDestroyEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -9085477073330798640, guid: 1fe786f095fe536438ee03f2021cc426, type: 3}
+      propertyPath: OnDestroyEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3859737275581598893, guid: 1fe786f095fe536438ee03f2021cc426, type: 3}
       propertyPath: m_Name
       value: Crate (1)
