@@ -210,3 +210,4 @@ Received Import Request.
 Start importing Assets/Materials/Radar.renderTexture using Guid(f455e0d48cbb5084cb33ca7dac8f2c8d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ebb913f68fece4d44ca2d25cea9a09f0') in 0.014169 seconds
   Import took 0.016718 seconds .
 
+AssetImportWorkerClient::OnTransportError - code=2 error=End of file
