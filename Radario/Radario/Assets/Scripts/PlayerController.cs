@@ -12,9 +12,9 @@ public class PlayerController : MonoBehaviour
     private float y = 0;
 
     [Header("PlayerMove")]
-    private Rigidbody rb;
     [SerializeField]
     float moveSpeed = 6;
+    private Rigidbody rb;
 
     [Header("Button Interactive")]
     public float buttonRaycastLength;
@@ -35,7 +35,6 @@ public class PlayerController : MonoBehaviour
             buttonRayCast();
         }
     }
-
     void playerLook()
     {
         x -= Input.GetAxis("Mouse Y") * mouseSens * Time.deltaTime;
@@ -64,8 +63,8 @@ public class PlayerController : MonoBehaviour
         {
             if (buttonHit.transform.tag == "Button")
             {
-                buttonHit.transform.gameObject.GetComponent<Button>()?.buttonPressed?.Invoke();
-                Debug.Log("RAAK");
+                buttonHit.transform.gameObject.GetComponentInParent<Button>()?.buttonPressed?.Invoke();
+                //Debug.Log("RAAK");
             }
         }
     }
