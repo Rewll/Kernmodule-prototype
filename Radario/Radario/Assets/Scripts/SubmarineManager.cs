@@ -3,12 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public enum submarineMoveTypes { Torpedo, Sonar, Boost };
+public enum submarineMoveTypes { Torpedo, Sonar, Boost , Dive, Upturn, Anchor};
 
 public class SubmarineManager : SingleTon<SubmarineManager>
 {
-    [SerializeField]
-    bool test;
     public List<submarineMoveTypes> moveSequence = new List<submarineMoveTypes>();
 
     [Header("Submarine Moves")]
@@ -17,12 +15,13 @@ public class SubmarineManager : SingleTon<SubmarineManager>
     public bool isExecutingMoves;
 
     [Header("Submarine Move events")]
-    public UnityEvent addSpeed;
-    public UnityEvent substractSpeed;
+    public UnityEvent Dive;
+    public UnityEvent Upturn;
 
     public UnityEvent Torpedo;
     public UnityEvent Sonar;
     public UnityEvent Boost;
+    public UnityEvent Anchor;
     private void Awake()
     {
         Instance = this;
@@ -31,7 +30,7 @@ public class SubmarineManager : SingleTon<SubmarineManager>
     public void testVoid()
     {
         Debug.Log("TestVoid");
-        test = true;
+
     }
 
     public void addMoveToSequence(int moveType)
@@ -59,6 +58,15 @@ public class SubmarineManager : SingleTon<SubmarineManager>
                     break;
                 case submarineMoveTypes.Boost:
                     Boost.Invoke();
+                    break;
+                case submarineMoveTypes.Dive:
+                    Dive.Invoke();
+                    break;
+                case submarineMoveTypes.Upturn:
+                    Upturn.Invoke();
+                    break;
+                case submarineMoveTypes.Anchor:
+                    Anchor.Invoke();
                     break;
             }
             yield return new WaitForSeconds(SecondsBetweenMoves);
