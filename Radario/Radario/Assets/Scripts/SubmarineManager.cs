@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public enum submarineMoveTypes { Torpedo, Sonar, Boost , Dive, Upturn, Anchor};
+public enum submarineMoveTypes { Torpedo, Sonar, Grab , Dive, Upturn, Anchor};
 
 public class SubmarineManager : SingleTon<SubmarineManager>
 {
@@ -20,7 +20,7 @@ public class SubmarineManager : SingleTon<SubmarineManager>
 
     public UnityEvent Torpedo;
     public UnityEvent Sonar;
-    public UnityEvent Boost;
+    public UnityEvent Grab;
     public UnityEvent Anchor;
     private void Awake()
     {
@@ -56,8 +56,8 @@ public class SubmarineManager : SingleTon<SubmarineManager>
                 case submarineMoveTypes.Sonar:
                     Sonar.Invoke();
                     break;
-                case submarineMoveTypes.Boost:
-                    Boost.Invoke();
+                case submarineMoveTypes.Grab:
+                    Grab.Invoke();
                     break;
                 case submarineMoveTypes.Dive:
                     Dive.Invoke();
