@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviour
     {
         playerLook();
         playerMove();
-        Debug.DrawRay(kamera.transform.position, kamera.transform.forward * buttonRaycastLength);
+        //Debug.DrawRay(kamera.transform.position, kamera.transform.forward * buttonRaycastLength);
         if (Input.GetMouseButtonUp(0))
         {
             buttonRayCast();
