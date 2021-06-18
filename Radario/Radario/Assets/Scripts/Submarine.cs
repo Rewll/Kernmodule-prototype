@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Submarine : MonoBehaviour
 {
@@ -11,12 +12,20 @@ public class Submarine : MonoBehaviour
     [SerializeField] float divingSpeed;
     [SerializeField] float steeringAmount;
     [SerializeField] float rotationSpeed;
+    [SerializeField] float treasureRange;
+    [SerializeField] GameObject torpedoPrefab;
+    [SerializeField] GameObject torpedoPos;
+
+
     Rigidbody submarineRB;
+    [SerializeField] GameObject treasure;
+    [SerializeField] UnityEvent win;
 
     private void Start()
     {
         submarineRB = GetComponent<Rigidbody>();
         submarineSpeed = submarineStartSpeed;
+        treasure = GameObject.FindWithTag("Treasure");
         //submarineRB.velocity = new Vector3(submarineRB.velocity.x, submarineRB.velocity.y, submarineSpeed);
     }
     private void Update()
@@ -37,28 +46,24 @@ public class Submarine : MonoBehaviour
         //submarineRB.velocity = new Vector3(submarineRB.velocity.x, submarineSpeed, submarineRB.velocity.z);
     }
 
-
-
-
     public void fireTorpedo()
     {
         Debug.Log("TORPEDO BEING FIRED");
-    }
-
-    public void anchor()
-    {
-        Debug.Log("ANCHOR BEING DROPPED");
-    }
-
-
-    public void sendSonar()
-    {
-        Debug.Log("SONAR BEING SEND");
+        Instantiate(torpedoPrefab, torpedoPos.transform.position, Quaternion.identity);
+        //sound?
     }
 
     public void Grab()
     {
-        Debug.Log("SUBMARINE BEING BOOSTED");
+        Debug.Log("SUBMARINE BEING MAGNETED");
+        if (Vector3.Distance(transform.position, treasure.transform.position) < treasureRange)
+        {
+            win.Invoke();
+        }
+        else
+        {
+            //NO WIN
+        }
     }
 
     public void Dive()
