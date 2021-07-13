@@ -37,8 +37,8 @@ public class PlayerController : MonoBehaviour
     }
     void playerLook()
     {
-        x -= Input.GetAxis("Mouse Y") * mouseSens * Time.deltaTime;
-        y += Input.GetAxis("Mouse X") * mouseSens * Time.deltaTime;
+        x -= Input.GetAxis("Mouse Y") * mouseSens;
+        y += Input.GetAxis("Mouse X") * mouseSens;
 
         x = Mathf.Clamp(x, -90, 90);
 
@@ -47,8 +47,8 @@ public class PlayerController : MonoBehaviour
     }
     void playerMove()
     {
-        float x = Input.GetAxisRaw("Horizontal") * moveSpeed * Time.deltaTime;
-        float y = Input.GetAxisRaw("Vertical") * moveSpeed * Time.deltaTime;
+        float x = Input.GetAxisRaw("Horizontal") * moveSpeed;
+        float y = Input.GetAxisRaw("Vertical") * moveSpeed;
 
         Vector3 movePos = transform.right * x + transform.forward * y;
         Vector3 NewMovePos = new Vector3(movePos.x, rb.velocity.y, movePos.z);

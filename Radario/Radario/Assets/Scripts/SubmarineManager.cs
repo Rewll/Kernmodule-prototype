@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public enum submarineMoveTypes { Torpedo, Sonar, Boost , Dive, Upturn, Anchor};
+public enum submarineMoveTypes { Torpedo, Sonar, Grab, Dive, Upturn, Anchor };
 
 public class SubmarineManager : SingleTon<SubmarineManager>
 {
     public List<submarineMoveTypes> moveSequence = new List<submarineMoveTypes>();
+    public List<Transform> allEnemies = new List<Transform>();
+    public GameObject winPanel;
 
     [Header("Submarine Moves")]
     [SerializeField]
@@ -20,7 +22,7 @@ public class SubmarineManager : SingleTon<SubmarineManager>
 
     public UnityEvent Torpedo;
     public UnityEvent Sonar;
-    public UnityEvent Boost;
+    public UnityEvent Grab;
     public UnityEvent Anchor;
     private void Awake()
     {
@@ -56,8 +58,8 @@ public class SubmarineManager : SingleTon<SubmarineManager>
                 case submarineMoveTypes.Sonar:
                     Sonar.Invoke();
                     break;
-                case submarineMoveTypes.Boost:
-                    Boost.Invoke();
+                case submarineMoveTypes.Grab:
+                    Grab.Invoke();
                     break;
                 case submarineMoveTypes.Dive:
                     Dive.Invoke();
@@ -73,5 +75,18 @@ public class SubmarineManager : SingleTon<SubmarineManager>
         }
         moveSequence.Clear();
         isExecutingMoves = false;
+    }
+
+    public void Win()
+    {
+        Debug.Log("PLAYER HAS WON");
+        StartCoroutine(win());
+    }
+
+    IEnumerator win()
+    {
+        winPanel.SetActive(true);
+        yield return new WaitForSeconds(7);
+        Application.Quit();
     }
 }
